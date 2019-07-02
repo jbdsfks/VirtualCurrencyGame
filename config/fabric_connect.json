@@ -1,0 +1,14 @@
+{
+    "isTLS":"no",
+    "caurl":"http://localhost:7054",
+    "caname":"ca.example.com",
+    "couchurl":"http://localhost:5984",
+    "couchdb" :"member_db",
+    "user_id" : "admin",
+    "mspid" : "Org1MSP",
+    "channel_id": "mychannel",
+    "chaincode_id" : "fabcar",
+    "peer_url": ["grpc://localhost:7051"],
+    "orderer_url" : "grpc://localhost:7050",
+    "event_url" : ["grpc://localhost:7053"]
+}

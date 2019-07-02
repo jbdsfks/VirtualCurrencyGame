@@ -1,0 +1,50 @@
+---
+name: "fn"
+description: "first network common connection file, default client for org1"
+version: "1.0"
+client:
+  tlsEnable: true  
+  channelName: mychannel
+  defaultPeerName: peer0.org1.example.com
+  chaincode: mycc
+  organization: Org1
+  affiliation: org1.department1
+  wallet:
+    couchDB: true
+    url: http://couchdb.ca.org1.example.com:5984
+channels:
+  mychannel:
+    peers:
+      peer0.org1.example.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+        discover: true
+organizations:
+  Org1:
+    mspid: Org1MSP
+    peers:
+      - peer0.org1.example.com
+    certificateAuthorities:
+      - ca.org1.example.com
+peers:
+  peer0.org1.example.com:
+    url: grpcs://peer0.org1.example.com:7051
+
+    grpcOptions:
+      ssl-target-name-override: peer0.org1.example.com
+      name: peer0.org1.example.com:7051
+    tlsCACerts:
+      path: ./config/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+certificateAuthorities:
+  ca.org1.example.com:
+    url: https://ca.org1.example.com:7054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: ./config/crypto-config/peerOrganizations/org1.example.com/ca/ca.org1.example.com-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    caName: ca.org1.example.com
